@@ -1,0 +1,6 @@
+@TFB_BackEnd_Margaux_HostAddress = http://localhost:5045
+
+GET {{TFB_BackEnd_Margaux_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
