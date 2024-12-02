@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TFB_BackEnd_Margaux", "TFB_BackEnd_Margaux.csproj", "{30E7F514-0F3E-4BD7-9953-13787079D54C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{30E7F514-0F3E-4BD7-9953-13787079D54C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30E7F514-0F3E-4BD7-9953-13787079D54C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30E7F514-0F3E-4BD7-9953-13787079D54C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30E7F514-0F3E-4BD7-9953-13787079D54C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {017503B3-761E-4675-8137-BFF58AD2AB59}
+	EndGlobalSection
+EndGlobal
