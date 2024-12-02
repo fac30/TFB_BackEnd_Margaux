@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using TFB_BackEnd_Margaux.Models;
 
 namespace TFB_BackEnd_Margaux.Data
 {
@@ -9,7 +10,6 @@ namespace TFB_BackEnd_Margaux.Data
         {
         }
 
-        // Define DbSets for your entities here. For example:
-        // public DbSet<YourEntity> YourEntities { get; set; }
+        public DbSet<Outfit> Outfits { get; set; } // This will create the outfits table
     }
 }
