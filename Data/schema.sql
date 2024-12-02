@@ -27,3 +27,13 @@ CREATE TABLE categories (
     region VARCHAR(100)
 );
 
+CREATE TABLE clothing_items (
+    item_id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,
+    category_id INT NOT NULL,
+    item_desc VARCHAR(255) NOT NULL,
+    photo_id INT,
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (category_id) REFERENCES categories(category_id)
+);
+
