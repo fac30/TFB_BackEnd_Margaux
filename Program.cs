@@ -6,14 +6,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseInMemoryDatabase("InMemoryDb")); // Use an in-memory database for simplicity
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1",
-     new OpenApiInfo { Title = "MyCloset", 
-     Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "MyCloset", Version = "v1" });
 });
 
 builder.Services.AddControllers();
