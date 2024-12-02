@@ -19,3 +19,11 @@ CREATE TABLE users (
     theme VARCHAR(50) NOT NULL
 );
 
+CREATE TABLE categories (
+    category_id SERIAL PRIMARY KEY,
+    category_name VARCHAR(255) NOT NULL,
+    default_name VARCHAR(255) NOT NULL,
+    colour VARCHAR(50),
+    region VARCHAR(100)
+);
+
