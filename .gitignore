@@ -35,3 +35,4 @@ _ReSharper*/
 *.swp
 *.sln.ide
 *.sln.ide.*
+**/.terraform/*
