@@ -12,7 +12,7 @@ using TFB_BackEnd_Margaux.Data;
 namespace TFB_BackEnd_Margaux.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241202155128_InitialMigration")]
+    [Migration("20241203005454_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -67,6 +67,9 @@ namespace TFB_BackEnd_Margaux.Migrations
 
                     b.Property<string>("ItemDesc")
                         .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("PhotoLink")
                         .HasColumnType("text");
 
                     b.Property<int>("UserId")

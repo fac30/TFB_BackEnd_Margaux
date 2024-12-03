@@ -52,7 +52,8 @@ namespace TFB_BackEnd_Margaux.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     UserId = table.Column<int>(type: "integer", nullable: false),
                     CategoryId = table.Column<int>(type: "integer", nullable: false),
-                    ItemDesc = table.Column<string>(type: "text", nullable: false)
+                    ItemDesc = table.Column<string>(type: "text", nullable: false),
+                    PhotoLink = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {

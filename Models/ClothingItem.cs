@@ -12,7 +12,7 @@ public class ClothingItem
     public int UserId { get; set; }
     public int CategoryId { get; set; }
     public required string ItemDesc { get; set; }
-    // public string? PhotoLink { get; set; }
+    public string? PhotoLink { get; set; }
     public User? User { get; set; }
     public Category? Category { get; set; }
     public ICollection<OutfitItem> OutfitItems { get; set; }
