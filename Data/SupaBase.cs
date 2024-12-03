@@ -1,11 +1,19 @@
+using System;
+using Supabase;
+
 public class SupabaseClient
 {
     private readonly Supabase.Client _supabase;
 
     public SupabaseClient()
     {
-        var url = Environment.GetEnvironmentVariable("https://kaofwkhvgodmzlbshmvp.supabase.co");
-        var key = Environment.GetEnvironmentVariable("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imthb2Z3a2h2Z29kbXpsYnNobXZwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzI3OTc3NjUsImV4cCI6MjA0ODM3Mzc2NX0.5JG1JOBwc4ewkJs5sASigQ4We5jiPB7-pIvqLud0HY8");
+        var url = Environment.GetEnvironmentVariable("SUPABASE_URL");
+        var key = Environment.GetEnvironmentVariable("SUPABASE_KEY");
+
+        if (string.IsNullOrEmpty(url) || string.IsNullOrEmpty(key))
+        {
+            throw new Exception("Supabase URL or Key is not set in the environment variables.");
+        }
 
         var options = new Supabase.SupabaseOptions
         {
@@ -18,5 +26,10 @@ public class SupabaseClient
     public async Task Initialize()
     {
         await _supabase.InitializeAsync();
+    }
+
+    public Supabase.Client GetClient()
+    {
+        return _supabase;
     }
 }
