@@ -38,3 +38,5 @@ _ReSharper*/
 **/.terraform/*
 *.tfstate
 *.tfstate.*
+
+.env
