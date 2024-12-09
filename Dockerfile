@@ -19,5 +19,11 @@ RUN dotnet publish "TFB_BackEnd_Margaux.csproj" -c Release -o /app/publish
 # Copy the build into the base image and define the entry point
 FROM base AS final
 WORKDIR /app
+
+# Copy the published app into the container
 COPY --from=publish /app/publish .
+
+# Copy the .env file into the container (important for accessing environment variables)
+COPY .env .env
+
 ENTRYPOINT ["dotnet", "TFB_BackEnd_Margaux.dll"]

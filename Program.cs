@@ -2,15 +2,27 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using TFB_BackEnd_Margaux.Data;
 using Supabase;
+using DotNetEnv;  // Add this at the top to reference DotNetEnv
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Load environment variables from .env file
-DotNetEnv.Env.Load();
+// Set up the host configuration to load the .env file
+builder.Host.ConfigureAppConfiguration((context, config) =>
+{
+    if (context.HostingEnvironment.IsDevelopment())
+    {
+        Env.Load("/app/.env");  // Explicitly load .env file from /app directory
+    }
+});
 
 // Configure Supabase client
 var supabaseUrl = Environment.GetEnvironmentVariable("SUPABASE_URL");
 var supabaseKey = Environment.GetEnvironmentVariable("SUPABASE_KEY");
+var db_host = Environment.GetEnvironmentVariable("DB_HOST");
+var db_port = Environment.GetEnvironmentVariable("DB_PORT");
+var db_name = Environment.GetEnvironmentVariable("DB_NAME");
+var db_user = Environment.GetEnvironmentVariable("DB_USER");
+var db_password = Environment.GetEnvironmentVariable("DB_PASSWORD");
 var options = new Supabase.SupabaseOptions
 {
     AutoConnectRealtime = true
@@ -34,6 +46,8 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddControllers();
 
 var app = builder.Build();
+
+// Initialize the database
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
