@@ -1,4 +1,4 @@
-name: Deploy the dockerised backend
+name: Deploy the dockerised backend.
 
 on:
     push:
