@@ -12,9 +12,7 @@ DotNetEnv.Env.Load();
 
 // Log the OpenAI API key for debugging purposes
 var openAiApiKey = Environment.GetEnvironmentVariable("OPENAI_API_KEY");
-Console.WriteLine($"DEBUG: OpenAI API Key: {openAiApiKey}"); // Remove or comment out in production
 
-// Configure Supabase client
 var supabaseUrl = Environment.GetEnvironmentVariable("SUPABASE_URL");
 var supabaseKey = Environment.GetEnvironmentVariable("SUPABASE_KEY");
 var options = new Supabase.SupabaseOptions { AutoConnectRealtime = true };
@@ -56,6 +54,22 @@ builder.Services.AddHttpClient(
 // Add OpenAI services
 builder.Services.AddScoped<IOpenAiService, OpenAiService>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(
+        "AllowSpecific",
+        builder =>
+        {
+            builder
+                .WithOrigins(
+                    "http://localhost:5174" // Your specified origin
+                )
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+        }
+    );
+});
+
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
@@ -71,6 +85,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("AllowSpecific");
 app.UseAuthorization();
 app.MapControllers();
 app.Run();

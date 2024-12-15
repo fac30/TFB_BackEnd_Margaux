@@ -25,10 +25,6 @@ namespace TFB_BackEnd_Margaux.Services
             {
                 try
                 {
-                    Console.WriteLine(
-                        $"Attempt {attempts + 1} - Sending request to OpenAI with prompt: {prompt}"
-                    );
-
                     var requestBody = new
                     {
                         model = "gpt-3.5-turbo",
@@ -40,16 +36,12 @@ namespace TFB_BackEnd_Margaux.Services
                         requestBody
                     );
 
-                    Console.WriteLine(
-                        $"Attempt {attempts + 1} - Response status code: {response.StatusCode}"
-                    );
-
                     if (response.StatusCode == System.Net.HttpStatusCode.TooManyRequests)
                     {
                         // Get retry-after header if available
                         var retryAfter =
                             response.Headers.RetryAfter?.Delta?.TotalMilliseconds ?? _retryDelay;
-                        Console.WriteLine($"Rate limited. Waiting {retryAfter}ms before retry.");
+
                         await Task.Delay((int)retryAfter);
                         attempts++;
                         continue;
@@ -58,7 +50,6 @@ namespace TFB_BackEnd_Margaux.Services
                     response.EnsureSuccessStatusCode();
 
                     var result = await response.Content.ReadAsStringAsync();
-                    Console.WriteLine("OpenAI response content: " + result);
 
                     var jsonResponse = JsonSerializer.Deserialize<JsonElement>(result);
                     return jsonResponse
@@ -69,7 +60,6 @@ namespace TFB_BackEnd_Margaux.Services
                 }
                 catch (HttpRequestException ex) when (attempts < _maxRetries - 1)
                 {
-                    Console.WriteLine($"Attempt {attempts + 1} failed: {ex.Message}");
                     await Task.Delay(_retryDelay * (attempts + 1)); // Exponential backoff
                     attempts++;
                 }

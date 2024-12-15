@@ -23,4 +23,4 @@ namespace TFB_BackEnd_Margaux.Controllers
             return await _context.Categories.ToListAsync();
         }
     }
-} 
+}
