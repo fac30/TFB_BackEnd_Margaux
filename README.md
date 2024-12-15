@@ -67,3 +67,36 @@ dotnet add package Swashbuckle.AspNetCore
    - Navigate to `https://localhost:<port>/swagger` in your web browser
    - Use the interactive UI to explore and test API endpoints
    - API documentation is automatically generated from your controller annotations
+
+## Chatbot Configuration and Setup
+
+### Overview
+The application includes an AI-powered chatbot specifically designed to provide guidance on sustainable fashion. The chatbot is configured to assist with eco-friendly fashion choices, including clothing swaps, upcycling, thrifting, and local sustainable fashion events.
+
+### Technical Setup Requirements
+
+1. **CORS Configuration**
+   - Update the CORS settings in `Program.cs` (line 65) to allow requests from your production frontend URL
+   - Current default: `http://localhost:5174`
+
+2. **Environment Variables**
+   - Create a `.env` file in the root directory
+   - Add your OpenAI API key:
+     ```
+     OPENAI_API_KEY=your_api_key_here
+     ```
+   - Note: Before handover, ensure the API key is updated to the product owner's key
+
+3. **Chatbot Personality**
+   - The chatbot's behaviour is controlled by a predefined prompt in `Controllers/ChatController.cs`
+   - This prompt ensures the bot:
+     - Focuses solely on sustainable fashion topics
+     - Provides guidance on clothing swaps, upcycling, thrifting, and eco-friendly events
+     - Redirects off-topic conversations back to sustainable fashion
+     - Prioritises environmentally conscious solutions
+
+### Important Notes
+- The predefined prompt is crucial for maintaining the chatbot's focus and preventing off-topic responses
+- The longer and more descriptive this prompt is, the more accurate the chatbot's responses will be
+- Any modifications to the prompt should maintain the eco-friendly fashion focus
+- The system is designed to reject empty messages and handle errors appropriately
