@@ -36,4 +36,40 @@ _ReSharper*/
 *.sln.ide
 *.sln.ide.*
 
-.env
+.env# Build Folders
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio Code
+.vscode/
+
+# Mac
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Rider
+.idea/
+*.sln.iml
+
+# Resharper
+_ReSharper*/
+*.DotSettings.user
+
+# DotNet
+*.log
+*.vs/
+*.nupkg
+*.snupkg
+*.swp
+*.sln.ide
+*.sln.ide.*
